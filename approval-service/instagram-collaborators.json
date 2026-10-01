@@ -1,0 +1,15 @@
+{
+  "default_collaborators": ["dewantara_ar", "ediimola"],
+  "maximum_collaborators": 3,
+  "authors": [
+    {"author_name":"Dewantara Ramadhan","author_aliases":[],"instagram_username":"dewantara_ar","collab_enabled":true},
+    {"author_name":"Edi Batrawan","author_aliases":["Edi Imola"],"instagram_username":"ediimola","collab_enabled":true},
+    {"author_name":"Ahmad Fathoni","author_aliases":[],"instagram_username":"abibejho","collab_enabled":true},
+    {"author_name":"Alpacino","author_aliases":[],"instagram_username":"liealpacino","collab_enabled":true},
+    {"author_name":"Hafid-Hapid","author_aliases":[],"instagram_username":"hafidhapid","collab_enabled":true},
+    {"author_name":"Ja’far Alamsyifa","author_aliases":["Ja'far Alamsyifa"],"instagram_username":"jaf_alam","collab_enabled":true},
+    {"author_name":"Muhamad Ihya","author_aliases":[],"instagram_username":"partofihya_","collab_enabled":true},
+    {"author_name":"Sigit Prayogi","author_aliases":[],"instagram_username":"pkdsgt","collab_enabled":true},
+    {"author_name":"Yeyep Ardiyansyah","author_aliases":[],"instagram_username":"yeyep_ardiansyah","collab_enabled":true}
+  ]
+}

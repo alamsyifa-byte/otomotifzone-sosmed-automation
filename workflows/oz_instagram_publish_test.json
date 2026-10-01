@@ -1,0 +1,192 @@
+{
+  "updatedAt": "2026-09-25T12:15:00.000Z",
+  "createdAt": "2026-09-25T12:15:00.000Z",
+  "id": "OZInstagramPublishTestV1",
+  "name": "OZ Instagram - PUBLIKASI UJI AKUN TEST",
+  "description": "One-shot inactive workflow that publishes one already-approved OtomotifZone article to the unused Instagram test account.",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-880, 0],
+      "id": "8789e7f6-cd38-4590-9385-68e621f3da9b",
+      "name": "Manual Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "https://graph.instagram.com/v26.0/me",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "fields", "value": "id,username,account_type" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [-656, 0],
+      "id": "54d43fbe-dc67-44f1-a65a-9b5802acb017",
+      "name": "Verify Instagram Test Account",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rlKQWOhngkH0F1wd",
+          "name": "Instagram OZ Test - alamsyifa_corp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($json.username !== 'alamsyifa_corp') throw new Error('Akun Instagram yang terhubung bukan akun uji alamsyifa_corp.');\nreturn [{json:{ig_user_id:String($json.id),username:$json.username,image_url:'https://139-190-98-210.sslip.io/oz-media/d0482aca-5937-46cb-9b42-a2131e583679.jpg',caption:'Salam Otozoner!\\n\\nTim Sultan 05 asal Palu siap menghadapi final BLACK DRAGBIKE 2026 di Sentul dengan dua motor pilihan: Mio 200cc Sunmori dan Ninja TU 155cc racikan Tekno Tuner Jakarta.\\n\\nBaca ulasan lengkapnya di sini!\\nKlik link di bio!\\n\\n#OtomotifZone #BlackDragbike #TimSultan05 #DragBike #Sentul',article_url:'https://otomotifzone.com/jelang-db-black-sentul-tim-sultan-05-asal-palu-siap-tempur-boyong-dua-motor-andal-dari-bengkel-top/'}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-432, 0],
+      "id": "2db83bf2-b911-4f58-a54b-cb86ff8cc2da",
+      "name": "Prepare Approved Test Post"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "={{ 'https://graph.instagram.com/v26.0/' + $json.ig_user_id + '/media' }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "image_url", "value": "={{ $json.image_url }}" },
+            { "name": "caption", "value": "={{ $json.caption }}" }
+          ]
+        },
+        "options": { "timeout": 30000 }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [-208, 0],
+      "id": "c2e314bd-2924-4f5e-825a-b5078758de4d",
+      "name": "Create Instagram Container",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rlKQWOhngkH0F1wd",
+          "name": "Instagram OZ Test - alamsyifa_corp"
+        }
+      }
+    },
+    {
+      "parameters": { "amount": 3, "unit": "seconds" },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [16, 0],
+      "id": "2ef59b45-a084-4214-b1b8-1befeb59b307",
+      "name": "Wait for Instagram Container",
+      "webhookId": "b70bb548-4612-4d2d-babb-e5dfa44c7072"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "={{ 'https://graph.instagram.com/v26.0/' + $('Create Instagram Container').first().json.id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "fields", "value": "status_code,status" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [240, 0],
+      "id": "2dfc6c91-e7e4-4858-9620-99af141e5429",
+      "name": "Check Instagram Container",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rlKQWOhngkH0F1wd",
+          "name": "Instagram OZ Test - alamsyifa_corp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "if ($json.status_code !== 'FINISHED') throw new Error('Container Instagram belum siap: ' + ($json.status || $json.status_code || 'UNKNOWN'));\nconst post=$('Prepare Approved Test Post').first().json;\nreturn [{json:{...post,creation_id:$('Create Instagram Container').first().json.id}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [464, 0],
+      "id": "4d8a300c-ca55-41bc-9833-b8228fac8ea8",
+      "name": "Require Finished Container"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "={{ 'https://graph.instagram.com/v26.0/' + $json.ig_user_id + '/media_publish' }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "creation_id", "value": "={{ $json.creation_id }}" }
+          ]
+        },
+        "options": { "timeout": 30000 }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [688, 0],
+      "id": "67af6761-ab3f-47a4-ab47-c7d8ec4484a6",
+      "name": "Publish Instagram Test Post",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rlKQWOhngkH0F1wd",
+          "name": "Instagram OZ Test - alamsyifa_corp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "={{ 'https://graph.instagram.com/v26.0/' + $json.id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "fields", "value": "id,permalink,media_type,timestamp,username" }
+          ]
+        },
+        "options": { "timeout": 20000 }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [912, 0],
+      "id": "370f55e5-c3bd-4e7d-a0f6-b3788128e237",
+      "name": "Read Published Instagram Post",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rlKQWOhngkH0F1wd",
+          "name": "Instagram OZ Test - alamsyifa_corp"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": { "main": [[{ "node": "Verify Instagram Test Account", "type": "main", "index": 0 }]] },
+    "Verify Instagram Test Account": { "main": [[{ "node": "Prepare Approved Test Post", "type": "main", "index": 0 }]] },
+    "Prepare Approved Test Post": { "main": [[{ "node": "Create Instagram Container", "type": "main", "index": 0 }]] },
+    "Create Instagram Container": { "main": [[{ "node": "Wait for Instagram Container", "type": "main", "index": 0 }]] },
+    "Wait for Instagram Container": { "main": [[{ "node": "Check Instagram Container", "type": "main", "index": 0 }]] },
+    "Check Instagram Container": { "main": [[{ "node": "Require Finished Container", "type": "main", "index": 0 }]] },
+    "Require Finished Container": { "main": [[{ "node": "Publish Instagram Test Post", "type": "main", "index": 0 }]] },
+    "Publish Instagram Test Post": { "main": [[{ "node": "Read Published Instagram Post", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "staticData": null,
+  "pinData": {},
+  "versionId": "d0e9dbd4-3f59-4e99-a714-b5db41dc83f6",
+  "triggerCount": 0,
+  "tags": []
+}

@@ -1,0 +1,7 @@
+# Instagram akun utama — 26 September 2026
+
+Credential n8n `Instagram OZ Production - otomotifzone_official` telah disimpan pengguna. Workflow `OZ Instagram - Cek Koneksi otomotifzone_official` berhasil dijalankan melalui n8n untuk membaca profil dan kuota publikasi dengan Graph API ID `17841463397654103`.
+
+Workflow produksi `OtomotifZone - 02 Decisions & Publish - PRODUCTION` (`OZCallbackStageV1`) telah diperbarui pada empat node Instagram: Create Instagram Container, Check Instagram Container, Publish Instagram Post, dan Read Published Instagram Post. Semua memakai credential akun utama dan endpoint `graph.facebook.com/v26.0`. Workflow diterbitkan ulang; status aktif dan endpoint kesehatan n8n HTTP 200. Cadangan sebelum dan sesudah perubahan tersimpan di VPS pada `/home/JEF4090/n8n/backups/oz-callback-preswitch-20260926.json` dan `/home/JEF4090/n8n/backups/oz-callback-after-20260926.json`.
+
+Workflow uji nonaktif `OZ Instagram - Uji Container Akun Utama (TANPA POST)` berhasil membuat container gambar melalui Meta memakai credential produksi. Workflow ini tidak mempunyai node `media_publish`; uji tersebut tidak membuat posting di Instagram. Pengujian publikasi penuh ke akun utama, pembaruan link-in-bio, dan kiriman channel untuk satu artikel yang disetujui masih perlu diamati pada keputusan approval nyata pertama. Jangan menyatakan tahap itu sudah lulus sebelum ada permalink Instagram dan item galeri yang cocok.

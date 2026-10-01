@@ -1,0 +1,116 @@
+{
+  "updatedAt": "2026-09-25T07:10:00.000Z",
+  "createdAt": "2026-09-25T07:10:00.000Z",
+  "id": "OZInstagramProductionCheckV1",
+  "name": "OZ Instagram - Cek Koneksi otomotifzone_official",
+  "description": "Read-only profile and publishing quota check. No publication.",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        0
+      ],
+      "id": "c029c979-8375-43a7-b6d0-45ca8644c031",
+      "name": "Manual Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "https://graph.facebook.com/v26.0/17841463397654103",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "id,username,name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -64,
+        0
+      ],
+      "id": "a6d4f2fb-834d-4e3a-b664-5975fe4a64a7",
+      "name": "Read Instagram Profile",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "agfYlBeN5jOgKdY3",
+          "name": "Instagram OZ Production - otomotifzone_official"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "https://graph.facebook.com/v26.0/17841463397654103/content_publishing_limit",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "quota_usage,config"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        200,
+        0
+      ],
+      "id": "62abd3b6-006b-4e39-9613-5a7a710ffaa7",
+      "name": "Read Publishing Quota",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "agfYlBeN5jOgKdY3",
+          "name": "Instagram OZ Production - otomotifzone_official"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Instagram Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Instagram Profile": {
+      "main": [
+        [
+          {
+            "node": "Read Publishing Quota",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "versionId": "379be39a-0b49-4419-bd7e-ab8ba7188c1a",
+  "triggerCount": 0,
+  "tags": []
+}

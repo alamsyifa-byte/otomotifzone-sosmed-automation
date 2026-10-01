@@ -1,0 +1,38 @@
+services:
+  approval:
+    build:
+      context: ./approval-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    read_only: true
+    user: node
+    environment:
+      PORT: "3001"
+      PGHOST: postgres
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB}
+      PGUSER: oz_approval_app
+      PGPASSWORD: ${OZ_APPROVAL_DB_PASSWORD}
+      APPROVAL_GROUP_CHAT_ID: "-5193846414"
+      NOTIFICATION_CHANNEL_CHAT_ID: "-1004347719947"
+      TELEGRAM_BOT_ID: ${OZ_TELEGRAM_BOT_ID}
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      automation:
+        aliases:
+          - oz-approval
+
+networks:
+  automation:
+    external: true
+    name: n8n_default

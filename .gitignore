@@ -1,0 +1,36 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Credentials and private exports
+credentials/
+*credentials*.json
+
+# Database dumps and operational backups
+backups/
+*.dump
+*.dump.gz
+*.sql.gz
+*.backup
+*.tar
+*.tgz
+*.zip
+
+# Generated/runtime data
+node_modules/
+*.log
+tmp/
+media/
+archive/
+coverage/
+
+# Editor and operating-system files
+.DS_Store
+.idea/
+.vscode/
+

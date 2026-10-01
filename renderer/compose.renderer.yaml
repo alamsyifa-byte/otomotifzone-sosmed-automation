@@ -1,0 +1,48 @@
+services:
+  renderer:
+    build:
+      context: ./renderer
+      dockerfile: Dockerfile
+    init: true
+    restart: unless-stopped
+    read_only: true
+    user: "pwuser"
+    environment:
+      PORT: "3000"
+      HOME: /tmp
+      PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
+      MEDIA_ROOT: /app/media
+      ARCHIVE_ROOT: /app/archive
+      PUBLIC_MEDIA_BASE: ${OZ_PUBLIC_MEDIA_BASE:-https://139-190-98-210.sslip.io/oz-media}
+    volumes:
+      - ./renderer/media:/app/media
+      - ./renderer/archive:/app/archive
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=192m,mode=1777,uid=1000,gid=1000
+    shm_size: 256m
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 128
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/healthz').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    networks:
+      automation:
+        aliases:
+          - renderer
+
+networks:
+  automation:
+    external: true
+    name: n8n_default

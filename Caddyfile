@@ -1,0 +1,29 @@
+139-190-98-210.sslip.io {
+  handle /oz-media/* {
+    reverse_proxy renderer:3000
+  }
+  handle {
+    reverse_proxy n8n:5678
+  }
+  encode zstd gzip
+}
+
+link.139-190-98-210.sslip.io {
+  handle /oz-media/* {
+    reverse_proxy renderer:3000
+  }
+  handle {
+    reverse_proxy oz-linkbio:3002
+  }
+  encode zstd gzip
+}
+
+link.otomotifzone.com {
+  handle /oz-media/* {
+    reverse_proxy renderer:3000
+  }
+  handle {
+    reverse_proxy oz-linkbio:3002
+  }
+  encode zstd gzip
+}

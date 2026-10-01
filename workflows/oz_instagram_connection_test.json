@@ -1,0 +1,68 @@
+{
+  "updatedAt": "2026-09-25T07:10:00.000Z",
+  "createdAt": "2026-09-25T07:10:00.000Z",
+  "id": "OZInstagramConnectionTestV1",
+  "name": "OZ Instagram - Uji Koneksi Akun Test",
+  "description": "Read-only connection test for the Instagram professional test account.",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-320, 0],
+      "id": "c029c979-8375-43a7-b6d0-45ca8644c031",
+      "name": "Manual Trigger"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "url": "https://graph.instagram.com/v26.0/me",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "id,username,account_type,media_count"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [-64, 0],
+      "id": "a6d4f2fb-834d-4e3a-b664-5975fe4a64a7",
+      "name": "Read Instagram Profile",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "rlKQWOhngkH0F1wd",
+          "name": "Instagram OZ Test - alamsyifa_corp"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Instagram Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "versionId": "f89675df-8ea4-4332-a0c9-26a0c24fdf47",
+  "triggerCount": 0,
+  "tags": []
+}

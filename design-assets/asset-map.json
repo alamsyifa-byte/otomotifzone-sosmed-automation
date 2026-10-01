@@ -1,0 +1,248 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1440
+  },
+  "category_assets": [
+    {
+      "name": "Adventure",
+      "asset": "design-assets/Category/Adventure.png",
+      "status": "ready",
+      "rendered_category": "Adventure"
+    },
+    {
+      "name": "Agenda",
+      "asset": "design-assets/Category/Agenda.png",
+      "status": "ready",
+      "rendered_category": "Agenda"
+    },
+    {
+      "name": "Bengkel",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "CSR",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Dealer",
+      "asset": "design-assets/Category/Dealer.png",
+      "status": "ready",
+      "rendered_category": "Dealer"
+    },
+    {
+      "name": "Formula 1",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Grasstrack",
+      "asset": "design-assets/Category/Grasstrack.png",
+      "status": "ready",
+      "rendered_category": "Grasstrack"
+    },
+    {
+      "name": "Internasional",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Karting",
+      "asset": "design-assets/Category/Karting.png",
+      "status": "ready",
+      "rendered_category": "Karting"
+    },
+    {
+      "name": "Komunitas",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Modifikasi",
+      "asset": "design-assets/Category/Modifikasi.png",
+      "status": "ready",
+      "rendered_category": "Modifikasi"
+    },
+    {
+      "name": "Moto2",
+      "asset": "design-assets/Category/Moto2.png",
+      "status": "ready",
+      "rendered_category": "Moto2"
+    },
+    {
+      "name": "Moto3",
+      "asset": "design-assets/Category/Moto3.png",
+      "status": "ready",
+      "rendered_category": "Moto3"
+    },
+    {
+      "name": "MotoGP",
+      "asset": "design-assets/Category/MotoGP.png",
+      "status": "ready",
+      "rendered_category": "MotoGP"
+    },
+    {
+      "name": "Motocross",
+      "asset": "design-assets/Category/Motocross.png",
+      "status": "ready",
+      "rendered_category": "Motocross"
+    },
+    {
+      "name": "Motor Klasik",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "News",
+      "asset": "design-assets/Category/News.png",
+      "status": "ready",
+      "rendered_category": "News"
+    },
+    {
+      "name": "Offroad",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Produk",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Profile",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Rally",
+      "asset": "design-assets/Category/Rally.png",
+      "status": "ready",
+      "rendered_category": "Rally"
+    },
+    {
+      "name": "Road Race",
+      "asset": "design-assets/Category/Road Race.png",
+      "status": "ready",
+      "rendered_category": "Road Race"
+    },
+    {
+      "name": "Safety Riding",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "Tips & Trik",
+      "asset": "design-assets/Category/News.png",
+      "status": "fallback_news",
+      "source_asset": null,
+      "rendered_category": "News"
+    },
+    {
+      "name": "WSBK",
+      "asset": "design-assets/Category/WSBK.png",
+      "status": "ready",
+      "rendered_category": "WSBK"
+    }
+  ],
+  "unsupported_assets": [
+    {
+      "file": "Category/Drag Race.png",
+      "reason": "Drag Race tidak ada di 25 kategori final; jangan gunakan untuk kategori final."
+    },
+    {
+      "file": "Category/International.png",
+      "reason": "Label berbahasa Inggris; tidak cocok dengan ejaan final Internasional. Buat PNG baru berlabel Internasional sebelum dipakai."
+    }
+  ],
+  "author_assets": [
+    {
+      "name": "AHMAD FATHONI",
+      "asset": "design-assets/Author/AHMAD FATHONI.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "ALPACINO",
+      "asset": "design-assets/Author/ALPACINO.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "DEWANTARA RAMADHAN",
+      "asset": "design-assets/Author/DEWANTARA RAMADHAN.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Dara",
+      "asset": "design-assets/Author/Dara.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Edi Batrawan",
+      "asset": "design-assets/Author/Edi Batrawan.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "HAFID-HAPID",
+      "asset": "design-assets/Author/HAFID-HAPID.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Jafar Alamsifa",
+      "asset": "design-assets/Author/Jafar Alamsifa.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Muhamad Ihya",
+      "asset": "design-assets/Author/Muhamad Ihya.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Sigit Prayogi",
+      "asset": "design-assets/Author/Sigit Prayogi.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Yeyep Ardiansyah",
+      "asset": "design-assets/Author/Yeyep Ardiansyah.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    },
+    {
+      "name": "Milla Moskova",
+      "asset": "design-assets/Author/Milla Moskova.png",
+      "match": "trim + collapse spaces + case-insensitive"
+    }
+  ],
+  "author_fallback": {
+    "name": null,
+    "asset": null,
+    "status": "blank_box",
+    "action": "Keep author box empty when author is empty or no exact badge exists. Do not insert Tim Redaksi or another person badge."
+  },
+  "unknown_author_action": "Jangan memilih badge orang lain. Gunakan fallback Tim Redaksi hanya sesuai kebijakan author; bila PNG belum tersedia, tahan render untuk tinjauan.",
+  "category_aliases": {},
+  "category_fallback": {
+    "policy": "When a category is outside the final approved list or has no exact matching badge PNG, render the News badge and set the design category to News. Preserve the source/model category as source_category for traceability; do not use a misleading unrelated category badge."
+  },
+  "unknown_category_action": "Use News as the rendered/design category and retain the original label in source_category."
+}

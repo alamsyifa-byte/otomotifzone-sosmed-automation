@@ -1,0 +1,47 @@
+services:
+  linkbio:
+    build:
+      context: ./linkbio-service
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    read_only: true
+    user: node
+    environment:
+      PORT: "3002"
+      PGHOST: postgres
+      PGPORT: "5432"
+      PGDATABASE: ${POSTGRES_DB}
+      PGUSER: oz_linkbio_web
+      PGPASSWORD: ${OZ_LINKBIO_DB_PASSWORD}
+      ANALYTICS_SECRET: ${OZ_LINKBIO_ANALYTICS_SECRET}
+      DASHBOARD_USERNAME: ${OZ_DASHBOARD_USERNAME}
+      DASHBOARD_PASSWORD: ${OZ_DASHBOARD_PASSWORD}
+      SITE_NAME: OtomotifZone
+      SITE_HANDLE: otomotifzone
+      SITE_DESCRIPTION: Akun resmi OtomotifZone
+      WEBSITE_URL: https://otomotifzone.com/
+      YOUTUBE_URL: https://www.youtube.com/channel/UCE4KLbSSXnBcvhaJHcuqTUg
+      BAGIBAGI_URL: https://bagibagi.co/OtomotifZone
+      SAWERIA_URL: https://saweria.co/OtomotifZone
+      PUBLIC_URL: ${OZ_LINKBIO_PUBLIC_URL:-https://link.139-190-98-210.sslip.io/}
+      OG_IMAGE_URL: https://otomotifzone.com/wp-content/uploads/2025/03/logo-otomotifzone.png
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=16m
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3002/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      automation:
+        aliases:
+          - oz-linkbio
+
+networks:
+  automation:
+    external: true
+    name: n8n_default

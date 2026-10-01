@@ -1,0 +1,9 @@
+{
+  "name": "oz-approval-service",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "dependencies": {
+    "pg": "8.16.3"
+  }
+}
